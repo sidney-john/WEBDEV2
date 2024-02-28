@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+    let listOfNumbers = [1,2,3,4,5,6,7,8,9,10];
+
+    function isOdd(number) {
+        return new Promise((resolve, reject)=> {
+            if (number % 2 == 0) {
+                console.log("Rejected Even", number);
+            }
+            else {
+                console.log("Resolved Odd", number);
+            }
+        });
+    } 
+
+    function Iteration(list) {
+        for (let i = 0; i < list.length; i++) {
+            isOdd(list[i]);
+        }
+    }
+    
+    Iteration(listOfNumbers);
+
+    function randomCharacter(){
+        let randomNumber = Math.floor(Math.random() * 26) + 65;
+        let Char = String.fromCharCode(randomNumber);
+        return Char;
+    }
+
+    function getRandomCharacter(Char){
+        return new Promise((resolve, reject)=> {
+            setTimeout(()=>{
+                resolve(Char)
+            }, 500);
+        });
+    }
+
+    let output_1 = randomCharacter();
+    getRandomCharacter(output_1)
+    .then(character => {
+      console.log("Resolved character:", character);
+    })
+    .catch(error => {
+      console.log("Rejected Character:", error);
+    });
+
+    function getNumber(){
+        return random = Math.floor(Math.random() * 500);
+    }
+    function getData(random) {
+        return new Promise((resolve, reject)=> {
+            setTimeout(()=> {
+                reject(random);
+            }, 500);
+        });
+    }
+    let output_2 = getNumber();
+    getData(output_2)
+    .then(character => {
+      console.log("Resolved Value:", character);
+    }).catch(error => {
+      console.log("Rejected Value:", error);
+    });
+
+
+    function rejectResolve() {
+        return new Promise((reject, resolve)=> {
+            let output = [randomCharacter(), getNumber()];
+            setTimeout(()=> {
+                for (let i = 0; i < 2; i++){
+                if (i === 1){
+                    console.log("Resolve Function 4", output);
+                } else {
+                    console.log("Reject Function 4", output);
+                }
+            }
+            }, 500);
+            
+        });
+    }
+
+    rejectResolve();
+
+    </script>
+</body>
+</html>
